@@ -6,22 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "postinstall": "prisma generate",
-    "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate dev",
-    "prisma:push": "prisma db push",
-    "prisma:dev:start": "prisma dev start roomson",
-    "prisma:dev:stop": "prisma dev stop roomson"
+    "lint": "eslint"
   },
   "dependencies": {
-    "@prisma/client": "^6.16.2",
-    "bcryptjs": "^3.0.3",
-    "jose": "^6.2.3",
     "next": "16.2.6",
     "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "zod": "^4.4.3"
+    "react-dom": "19.2.4"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -30,7 +20,6 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
-    "prisma": "^6.16.2",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
