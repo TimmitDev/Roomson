@@ -20,23 +20,34 @@ Maak je env bestand:
 cp .env.example .env
 ```
 
-Vul in `.env` minimaal:
+## 2. Database (snel lokaal, zonder Docker)
+
+Start lokale Prisma Postgres:
 
 ```bash
-DATABASE_URL="postgresql://USER:PASSWORD@HOST:5432/DBNAME?schema=public"
+npx prisma dev -d --name roomson
+```
+
+Zet daarna in `.env`:
+
+```bash
+DATABASE_URL="postgresql://postgres:postgres@localhost:<DB_PORT>/roomson?sslmode=disable&pgbouncer=true"
 AUTH_SECRET="een-lange-random-secret-van-minimaal-32-tekens"
 ```
 
-## 2. Prisma
-
-Maak de migratie en genereer client:
+Tip: de juiste poorten zie je met:
 
 ```bash
-npx prisma migrate dev --name init
-npx prisma generate
+npx prisma dev ls
 ```
 
-## 3. Starten
+## 3. Schema sync
+
+```bash
+npm run prisma:push
+```
+
+## 4. Starten
 
 ```bash
 npm run dev
@@ -51,8 +62,6 @@ Open `http://localhost:3000`.
 - `/dashboard` (protected)
 - `POST /api/auth/logout`
 
-## Veiligheid
+## Productie
 
-- Wachtwoorden zijn gehashed met `bcryptjs`.
-- Sessies draaien via signed JWT in `httpOnly` cookie.
-- `AUTH_SECRET` moet in productie sterk en uniek zijn.
+Gebruik in productie een beheerde PostgreSQL (bijv. Neon, Supabase, RDS, PlanetScale Postgres) en zet daar je `DATABASE_URL` op.
